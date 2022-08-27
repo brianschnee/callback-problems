@@ -197,3 +197,42 @@ function majority(array, callback) {
 // const isOdd = function(num) { return num % 2 === 1; };
 // console.log(majority([1, 2, 3, 4, 5], function(num) { return num % 2 === 1; })); // should log: true
 // console.log(majority([2, 3, 4, 5], function(num) { return num % 2 === 1; })); // should log: false
+
+/**
+ * Challenge 13
+ * Create a function prioritize that accepts an array and a callback. The callback will return either true or false. prioritize will iterate through the array and perform the callback on each element, and return a new array, where all the elements that yielded a return value of true come first in the array, and the rest of the elements come second.
+ */
+
+// function prioritize(array, callback) {
+//   const obj = array.reduce((a, b) => {
+//     callback(b) ? a.t.push(b) : a.f.push(b)
+//     return a
+//   }, { t: [], f: [] })
+
+//   return obj.t.concat(obj.f)
+// }
+
+function prioritize(array, callback) {
+    return array.reduce((a, b) => {
+        callback(b) ? a[0].push(b) : a[1].push(b)
+        return a
+    }, [[], []]).flat(1)
+}
+
+// Test Cases
+// const startsWithS = function(str) { return str[0] === 's' || str[0] === 'S'; };
+// console.log(prioritize(['curb', 'rickandmorty', 'seinfeld', 'sunny', 'friends'], startsWithS)); // should log: ['seinfeld', 'sunny', 'curb', 'rickandmorty', 'friends']
+
+// Challenge 14
+function countBy(array, callback) {
+    return array.reduce((a, b) => {
+        a[callback(b)]++
+        return a
+    }, { odd: 0, even: 0 })
+}
+
+// Test Cases
+console.log(countBy([1, 2, 3, 4, 5], function (num) {
+    if (num % 2 === 0) return 'even';
+    else return 'odd';
+})); // should log: { odd: 3, even: 2 }
