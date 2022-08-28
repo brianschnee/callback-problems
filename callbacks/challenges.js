@@ -247,7 +247,7 @@ function countBy(array, callback) {
 function groupBy(array, callback) {
     return array.reduce((a, b) => {
         const key = Math.floor(callback(b));
-        a[key] ? a[key].push(b) : a[Math.floor(key)] = [b]
+        a[key] ? a[key].push(b) : a[key] = [b]
         return a
     }, {})
 }
