@@ -281,3 +281,19 @@ function goodKeys(obj, callback) {
 // const sunny = { mac: 'priest', dennis: 'calculating', charlie: 'birdlaw', dee: 'bird', frank: 'warthog' };
 // const startsWithBird = function (str) { return str.slice(0, 4).toLowerCase() === 'bird'; };
 // console.log(goodKeys(sunny, startsWithBird)); // should log: ['charlie', 'dee']
+
+/**
+ * Challenge 17
+ * Create a function commutative that accepts two callbacks and a value. commutative will return a boolean indicating if the passing the value into the first function, and then passing the resulting output into the second function, yields the same output as the same operation with the order of the functions reversed (passing the value into the second function, and then passing the output into the first function).
+ */
+
+function commutative(f1, f2, value) {
+    return f1(f2(value)) === f2(f1(value))
+}
+
+// const multBy3 = n => n * 3;
+// const divBy4 = n => n / 4;
+// const subtract5 = n => n - 5;
+// console.log(commutative(multBy3, divBy4, 11)); // should log: true
+// console.log(commutative(multBy3, subtract5, 10)); // should log: false
+// console.log(commutative(divBy4, subtract5, 48)); // should log: false
