@@ -262,13 +262,19 @@ function groupBy(array, callback) {
  * Create a function goodKeys that accepts an object and a callback. The callback will return either true or false. goodKeys will iterate through the object and perform the callback on each value. goodKeys will then return an array consisting only the keys whose associated values yielded a true return value from the callback.
  */
 
+// function goodKeys(obj, callback) {
+//     let arr = []
+//     for (const [key, value] of Object.entries(obj)) {
+//         if (callback(value))
+//             arr.push(key)
+//     }
+//     return arr
+// }
+
 function goodKeys(obj, callback) {
-    let arr = []
-    for (const [key, value] of Object.entries(obj)) {
-        if (callback(value))
-            arr.push(key)
-    }
-    return arr
+    return Object.entries(obj).reduce((acc, [key, value]) => {
+        return callback(value) ? [...acc, key] : acc
+    }, [])
 }
 
 // Test Cases
